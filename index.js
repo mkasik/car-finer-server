@@ -78,6 +78,7 @@ async function run() {
             const result = await bookingCollection.insertOne(booking);
             res.send(result);
         });
+        // get booking data from collection
         app.get('/booking', async (req, res) => {
             const query = {}
             const cursor = bookingCollection.find(query);
