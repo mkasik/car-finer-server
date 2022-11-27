@@ -43,6 +43,11 @@ async function run() {
             const result = await dataCollection.findOne(query);
             res.send(result);
         });
+        app.post('/data', async (req, res) => {
+            const data = req.body;
+            const result = await dataCollection.insertOne(data);
+            res.send(result);
+        });
         app.get('/category', async (req, res) => {
             const query = {}
             const cursor = categoryCollection.find(query);
