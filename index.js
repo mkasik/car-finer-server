@@ -67,6 +67,7 @@ async function run() {
         //     const result = await usersCollection.findOne(query);
         //     res.send(result);
         // });
+        // get data by category id 
         app.get('/category/:id', async (req, res) => {
             const id = req.params.id;
             const query = { category_id: parseInt(id) };
