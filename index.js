@@ -74,7 +74,7 @@ async function run() {
             const service = await dataCollection.find(query).toArray();
             res.send(service);
         });
-
+        // get user data 
         app.post('/users', async (req, res) => {
             const user = req.body;
             const result = await usersCollection.insertOne(user);
