@@ -27,6 +27,7 @@ async function run() {
         const dataCollection = client.db('car').collection('data');
         const categoryCollection = client.db('car').collection('category');
         const usersCollection = client.db('car').collection('users');
+        const bookingCollection = client.db('car').collection('booking');
 
 
         // get data from services
@@ -71,7 +72,18 @@ async function run() {
             const user = req.body;
             const result = await usersCollection.insertOne(user);
             res.send(result);
-        })
+        });
+        app.post('/booking', async (req, res) => {
+            const booking = req.body;
+            const result = await bookingCollection.insertOne(booking);
+            res.send(result);
+        });
+        app.get('/booking', async (req, res) => {
+            const query = {}
+            const cursor = bookingCollection.find(query);
+            const booking = await cursor.toArray();
+            res.send(booking);
+        });
     }
     finally {
 
