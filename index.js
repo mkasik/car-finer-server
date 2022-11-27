@@ -43,6 +43,7 @@ async function run() {
             const result = await dataCollection.findOne(query);
             res.send(result);
         });
+        // POST data from seller 
         app.post('/data', async (req, res) => {
             const data = req.body;
             const result = await dataCollection.insertOne(data);
