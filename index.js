@@ -51,6 +51,12 @@ async function run() {
             const result = await dataCollection.insertOne(data);
             res.send(result);
         });
+        app.delete('/data/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await dataCollection.deleteOne(query);
+            res.send(result);
+        });
         app.get('/category', async (req, res) => {
             const query = {}
             const cursor = categoryCollection.find(query);
@@ -63,12 +69,18 @@ async function run() {
             const users = await cursor.toArray();
             res.send(users);
         });
-        // app.get('/users/:id', async (req, res) => {
-        //     const id = req.params.id;
-        //     const query = { _id: ObjectId(id) };
-        //     const result = await usersCollection.findOne(query);
-        //     res.send(result);
-        // });
+        app.get('/users/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await usersCollection.findOne(query);
+            res.send(result);
+        });
+        app.delete('/users/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await usersCollection.deleteOne(query);
+            res.send(result);
+        });
         // get data by category id 
         app.get('/category/:id', async (req, res) => {
             const id = req.params.id;
