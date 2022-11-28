@@ -28,6 +28,8 @@ async function run() {
         const categoryCollection = client.db('car').collection('category');
         const usersCollection = client.db('car').collection('users');
         const bookingCollection = client.db('car').collection('booking');
+        const reportCollection = client.db('car').collection('report');
+        const advertiseCollection = client.db('car').collection('advertise');
 
 
         // get data from services
@@ -91,6 +93,28 @@ async function run() {
             const cursor = bookingCollection.find(query);
             const booking = await cursor.toArray();
             res.send(booking);
+        });
+        app.post('/reports', async (req, res) => {
+            const report = req.body;
+            const result = await reportCollection.insertOne(report);
+            res.send(result);
+        });
+        app.get('/reports', async (req, res) => {
+            const query = {}
+            const cursor = reportCollection.find(query);
+            const report = await cursor.toArray();
+            res.send(report);
+        });
+        app.post('/advertise', async (req, res) => {
+            const advertise = req.body;
+            const result = await advertiseCollection.insertOne(advertise);
+            res.send(result);
+        });
+        app.get('/advertise', async (req, res) => {
+            const query = {}
+            const cursor = advertiseCollection.find(query);
+            const report = await cursor.toArray();
+            res.send(report);
         });
     }
     finally {
