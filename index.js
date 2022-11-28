@@ -122,6 +122,7 @@ async function run() {
             const result = await advertiseCollection.insertOne(advertise);
             res.send(result);
         });
+        // Get advertise data 
         app.get('/advertise', async (req, res) => {
             const query = {}
             const cursor = advertiseCollection.find(query);
